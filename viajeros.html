@@ -182,7 +182,141 @@
 
 </div>
 
+<style>
+.viajeros-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
 
+.viajeros-panel {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f7ff 100%);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(38, 198, 218, 0.1);
+    border: 2px solid #b2ebf2;
+}
+
+.viajeros-panel h3 {
+    color: #00838f;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border-bottom: 3px solid #26c6da;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #00695c;
+    font-size: 14px;
+}
+
+.viajeros-input {
+    padding: 12px;
+    border: 2px solid #b2ebf2;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    color: #333;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.viajeros-input:focus {
+    outline: none;
+    border-color: #26c6da;
+    box-shadow: 0 0 8px rgba(38, 198, 218, 0.3);
+    background-color: #f0fafb;
+}
+
+.viajeros-input:hover {
+    border-color: #00acc1;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.vacunas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    border: 2px solid #b2ebf2;
+    border-radius: 8px;
+    padding: 15px;
+    max-height: 280px;
+    overflow-y: auto;
+    background: white;
+}
+
+.vacuna-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+.vacuna-item:hover {
+    background: #e0f7fa;
+    color: #00695c;
+}
+
+.vacuna-item input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #26c6da;
+}
+
+.resultado-panel {
+    width: 100%;
+}
+
+.preview {
+    border: 2px solid #26c6da;
+    border-radius: 10px;
+    padding: 20px;
+    line-height: 1.8;
+    background: white;
+    min-height: 200px;
+    color: #333;
+    font-size: 14px;
+}
+
+.preview strong {
+    color: #00838f;
+    font-weight: 700;
+}
+
+@media(max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .vacunas {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+</style>
 
 <script>
 const paises = [
@@ -268,55 +402,7 @@ function actualizar(){
 
     const resultadoDiv = document.getElementById("resultado");
     if(resultadoDiv) {
-        resultadoDiv.innerHTML=`
-<strong>RVN:</strong> ${rvn || "No especificado"}
-<br><br>
-
-Paciente <strong>${sexo}</strong>, de <strong>${edad}</strong> años, que consulta por viaje que va a realizar a <strong>${paisesSeleccionados || "No especificado"}</strong>.
-<br>
-
-Estancia en: <strong>${alojamiento}</strong>.
-<br>
-
-Salida el: <strong>${salida || "No especificada"}</strong>.
-<br>
-
-Regreso el: <strong>${regreso || "No especificado"}</strong>.
-<br>
-
-Duración del viaje: <strong>${dias} días</strong>.
-<br>
-
-Viaje <strong>${organizado === "Sí" ? "organizado" : "no organizado"}</strong> con estancia en <strong>${estancia || "No especificada"}</strong>.
-<br>
-
-Motivo del viaje: <strong>${motivo}</strong>.
-<br><br>
-
-Se valora riesgo de enfermedades transmitidas por picadura de mosquito y damos recomendaciones para evitarlas.
-<br><br>
-
-<strong>Vacunas administradas el día de hoy:</strong>
-<br>
-
-${vacunas.length ? vacunas.map(v => `• ${v}`).join("<br>") : "Ninguna vacuna seleccionada"}
-<br><br>
-
-<strong>Profilaxis frente a la malaria:</strong> ${malaria}.
-<br><br>
-
-<strong>Recomendaciones generales:</strong>
-<br>
-• Elegir ropa y calzado adecuados
-<br>
-• Los vestidos deberán ser de fibras naturales (algodón, lino, etc.), ligeros, no ajustados y de colores claros
-<br>
-• Usar repelente de insectos
-<br>
-• Mantener buena higiene personal
-<br>
-• Consultar con un médico antes del viaje
-        `;
+        resultadoDiv.innerHTML=``;
     }
 }
 
