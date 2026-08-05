@@ -22,7 +22,6 @@ const pages = {
             </div>
         </div>
     `,
-    viajeros: null, // Será cargado desde viajeros.html
     configuracion: `
         <h2>Configuración</h2>
         <div class="settings-container">
@@ -109,10 +108,13 @@ navButtons.forEach(btn => {
 function loadContent(contentId) {
     const content = pages[contentId];
     
-    // Si el contenido es null, intenta cargar desde un archivo HTML externo
-    if (content === null) {
-        loadExternalContent(contentId);
-    } else if (content) {
+    // Si es viajeros, cargarlo desde archivo externo
+    if (contentId === 'viajeros') {
+        loadExternalContent('viajeros');
+        return;
+    }
+    
+    if (content) {
         // Efecto de fade out
         contentArea.style.animation = 'none';
         setTimeout(() => {
@@ -136,12 +138,25 @@ function loadExternalContent(filename) {
             return response.text();
         })
         .then(html => {
+            // Extraer solo el contenido del body, sin las etiquetas HTML completas
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const bodyContent = doc.body.innerHTML;
+            
             // Efecto de fade out
             contentArea.style.animation = 'none';
             setTimeout(() => {
-                contentArea.innerHTML = html;
+                contentArea.innerHTML = bodyContent;
                 // Efecto de fade in
                 contentArea.style.animation = 'fadeIn 0.3s ease-in';
+                
+                // Ejecutar scripts dinámicos si existen
+                const scripts = contentArea.querySelectorAll('script');
+                scripts.forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    contentArea.appendChild(newScript);
+                });
                 
                 // Agregar event listeners a elementos dinámicos
                 setupDynamicElements();
