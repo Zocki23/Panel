@@ -174,7 +174,7 @@
         </div>
     </div>
 
-    <!-- Aquí irá el texto generado -->
+    <!-- Sección de informe generado -->
     <div class="viajeros-resultado">
         <h3>📄 Informe generado</h3>
         <div id="resultado" class="resultado-box"></div>
@@ -317,6 +317,8 @@
     color: #333;
     font-size: 14px;
     line-height: 1.8;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 @media (max-width: 768px) {
@@ -385,7 +387,89 @@ document.getElementById("pais1").addEventListener("change", function() {
         pais2Container.style.display = "none";
         document.getElementById("pais2").value = "";
     }
+    generarInforme();
 });
+
+// Generar informe
+function generarInforme() {
+    const sexo = document.getElementById("sexo").value || "_____";
+    const edad = document.getElementById("edad").value || "_____";
+    const salida = document.getElementById("salida").value || "_____";
+    const regreso = document.getElementById("regreso").value || "_____";
+    const alojamiento = document.getElementById("alojamiento").value || "_____";
+    const motivo = document.getElementById("motivo").value || "_____";
+    const organizado = document.getElementById("organizado").value || "_____";
+    const estancia = document.getElementById("estancia").value || "_____";
+    const rvn = document.getElementById("rvn").value || "_____";
+    const malaria = document.getElementById("malaria").value || "_____";
+    
+    // Obtener países seleccionados
+    const pais1 = document.getElementById("pais1").value;
+    const pais2 = document.getElementById("pais2").value;
+    let paisesTexto = pais1 || "_____";
+    if (pais2) {
+        paisesTexto = pais1 + " y " + pais2;
+    }
+    
+    // Obtener vacunas seleccionadas
+    const vacunasSeleccionadas = [];
+    document.querySelectorAll('.vacunas-container input[type="checkbox"]:checked').forEach(checkbox => {
+        vacunasSeleccionadas.push(checkbox.value);
+    });
+    const vacunasTexto = vacunasSeleccionadas.length > 0 ? vacunasSeleccionadas.join(", ") : "_____";
+    
+    // Calcular duración del viaje
+    let dias = "_____";
+    if (salida && regreso) {
+        const fechaSalida = new Date(salida);
+        const fechaRegreso = new Date(regreso);
+        const diferencia = Math.ceil((fechaRegreso - fechaSalida) / (1000 * 60 * 60 * 24));
+        dias = diferencia > 0 ? diferencia : "_____";
+    }
+    
+    // Determinar si es "organizado" o "no organizado"
+    let tipoViaje = "_____";
+    if (organizado === "Sí") {
+        tipoViaje = "organizado";
+    } else if (organizado === "No") {
+        tipoViaje = "no organizado";
+    }
+    
+    // Construir el informe
+    const informe = `RVN: ${rvn}
+
+
+Paciente ${sexo}, de ${edad} años, que consulta por viaje que va a realizar a ${paisesTexto}. Estancia en: ${alojamiento}. Salida el ${salida}. Regreso el ${regreso}. Duración del viaje: ${dias} días. Viaje ${tipoViaje} con estancia en ${estancia}. Motivo del viaje: ${motivo}
+
+
+
+Se valora riesgo de enfermedades transmitidas por picadura de mosquito y damos recomendaciones para evitarlas.
+
+Administramos el día de hoy
+
+${vacunasTexto}
+
+Profilaxis frente a la malaria: ${malaria}
+
+
+
+
+Consejos y recomendaciones generales: Elegir ropa y calzado adecuados. Los vestidos deberán ser de fibras naturales (algodón, lino, etc.), ligeros, no ajustados y de colores claros, siendo aconsejable cambiarse de ropa a menudo. El calzado será amplio y ventilado para evitar infecciones por hongos. La exposición a los rayos del sol puede provocar graves y debilitantes insolaciones y quemaduras, usar sombrero, gafas de sol y aplicarse cremas con filtro solar. Evitar el contacto con cualquier tipo de animales, incluidos los domésticos, ya que éstos pueden no estar controlados sanitariamente. Se entrega hoja de recomendaciones generales y damos consejos para evitar picaduras de mosquitos.`;
+    
+    document.getElementById("resultado").textContent = informe;
+}
+
+// Agregar listeners a todos los campos
+document.querySelectorAll('.input-field').forEach(campo => {
+    campo.addEventListener('change', generarInforme);
+    campo.addEventListener('input', generarInforme);
+});
+
+document.querySelectorAll('.vacunas-container input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', generarInforme);
+});
+
+document.getElementById("organizado").addEventListener("change", generarInforme);
 
 // Cargar países al iniciar
 cargarPaises();
