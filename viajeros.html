@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Informe del Viajero</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    background:#f4f6f9;
+    color:#333;
+}
+
+header{
+    background:#1d3557;
+    color:white;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.panel{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:0;
+    color:#1d3557;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.full-width{
+    grid-column:1 / -1;
+}
+
+label{
+    margin-bottom:5px;
+    font-weight:600;
+}
+
+input,
+select{
+    padding:10px;
+    border:1px solid #d5d5d5;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.vacunas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:8px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:12px;
+    max-height:250px;
+    overflow-y:auto;
+}
+
+.preview{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:20px;
+    line-height:1.7;
+    background:#fafafa;
+    min-height:300px;
+}
+
+strong{
+    color:#1d3557;
+}
+
+@media(max-width:768px){
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Generador de Informe del Viajero</h1>
+</header>
+
+<div class="container">
+
+    <div class="panel">
+
+        <h2>Datos del paciente</h2>
+
+        <!-- FILA 1 -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Sexo</label>
+                <select id="sexo">
+                    <option>Hombre</option>
+                    <option>Mujer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Edad</label>
+                <input type="number" id="edad">
+            </div>
+
+        </div>
+
+        <!-- FILA 2 -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Fecha de salida</label>
+                <input type="date" id="salida">
+            </div>
+
+            <div class="form-group">
+                <label>Fecha de regreso</label>
+                <input type="date" id="regreso">
+            </div>
+
+        </div>
+
+        <!-- FILA 3 -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Alojamiento</label>
+                <select id="alojamiento">
+                    <option>Hotel</option>
+                    <option>Casa familiar</option>
+                    <option>Camping</option>
+                    <option>Campus</option>
+                    <option>ONG</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Motivo del viaje</label>
+                <select id="motivo">
+                    <option>Turismo</option>
+                    <option>Visita familiar</option>
+                    <option>Trabajo</option>
+                    <option>Estudio</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- FILA 4 -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Viaje organizado</label>
+                <select id="organizado">
+                    <option>Sí</option>
+                    <option>No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Profilaxis malaria</label>
+                <select id="malaria">
+                    <option>Recomendada</option>
+                    <option>No recomendada</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- FILA 5 -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>RVN</label>
+                <input type="text" id="rvn">
+            </div>
+
+            <div class="form-group">
+                <label>Zonas de estancia</label>
+                <input type="text" id="estancia">
+            </div>
+
+        </div>
+
+        <!-- FILA 6 -->
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>País 1</label>
+                <select id="pais1" onchange="mostrarPais(2)">
+                    <option value="">Seleccione país</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="pais2Div" style="display:none;">
+                <label>País 2</label>
+                <select id="pais2" onchange="mostrarPais(3)">
+                    <option value="">Seleccione país</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- FILA 7 -->
+        <div class="form-row">
+
+            <div class="form-group" id="pais3Div" style="display:none;">
+                <label>País 3</label>
+                <select id="pais3" onchange="mostrarPais(4)">
+                    <option value="">Seleccione país</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="pais4Div" style="display:none;">
+                <label>País 4</label>
+                <select id="pais4">
+                    <option value="">Seleccione país</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- FILA 8 -->
+        <div class="form-row">
+
+            <div class="form-group full-width">
+
+                <label>Vacunas recomendadas</label>
+
+                <div class="vacunas">
+
+                    <label><input type="checkbox" value="Cólera"> Cólera</label>
+                    <label><input type="checkbox" value="Dengue"> Dengue</label>
+                    <label><input type="checkbox" value="Encefalitis Centroeuropea"> Encefalitis Centroeuropea</label>
+                    <label><input type="checkbox" value="Encefalitis Japonesa"> Encefalitis Japonesa</label>
+                    <label><input type="checkbox" value="Fiebre amarilla"> Fiebre amarilla</label>
+                    <label><input type="checkbox" value="Fiebre tifoidea inyectable"> Fiebre tifoidea inyectable</label>
+                    <label><input type="checkbox" value="Fiebre tifoidea oral"> Fiebre tifoidea oral</label>
+                    <label><input type="checkbox" value="Men ACWY"> Men ACWY</label>
+                    <label><input type="checkbox" value="MPox"> MPox</label>
+                    <label><input type="checkbox" value="Polio"> Polio</label>
+                    <label><input type="checkbox" value="Rabia"> Rabia</label>
+                    <label><input type="checkbox" value="Tétanos"> Tétanos</label>
+                    <label><input type="checkbox" value="TV"> TV</label>
+                    <label><input type="checkbox" value="VHA"> VHA</label>
+                    <label><input type="checkbox" value="VHB"> VHB</label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h2>Informe generado</h2>
+
+        <div id="resultado" class="preview"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const paises = [
+"Afganistán","Albania","Alemania","Andorra","Angola","Arabia Saudí",
+"Argelia","Argentina","Armenia","Australia","Austria","Azerbaiyán",
+"Bahamas","Bangladés","Barbados","Bélgica","Belice","Benín","Bolivia",
+"Bosnia y Herzegovina","Botsuana","Brasil","Brunéi","Bulgaria",
+"Burkina Faso","Burundi","Camboya","Camerún","Canadá","Catar","Chad",
+"Chile","China","Chipre","Colombia","Corea del Norte","Corea del Sur",
+"Costa Rica","Costa de Marfil","Croacia","Cuba","Dinamarca","Ecuador",
+"Egipto","El Salvador","Emiratos Árabes Unidos","Eritrea","Eslovaquia",
+"Eslovenia","España","Estados Unidos","Estonia","Etiopía","Filipinas",
+"Finlandia","Francia","Gabón","Gambia","Georgia","Ghana","Grecia",
+"Guatemala","Guinea","Guinea Ecuatorial","Guyana","Haití","Honduras",
+"Hungría","India","Indonesia","Irak","Irán","Irlanda","Islandia",
+"Israel","Italia","Jamaica","Japón","Jordania","Kenia","Kuwait","Laos",
+"Letonia","Líbano","Liberia","Libia","Lituania","Luxemburgo",
+"Madagascar","Malasia","Malaui","Maldivas","Malí","Malta","Marruecos",
+"Mauricio","Mauritania","México","Moldavia","Mongolia","Mozambique",
+"Myanmar","Namibia","Nepal","Nicaragua","Níger","Nigeria","Noruega",
+"Nueva Zelanda","Omán","Países Bajos","Pakistán","Panamá","Papúa Nueva Guinea",
+"Paraguay","Perú","Polonia","Portugal","Reino Unido","República Checa",
+"República Dominicana","Rumanía","Rusia","Senegal","Serbia","Singapur",
+"Siria","Somalia","Sri Lanka","Sudáfrica","Sudán","Suecia","Suiza",
+"Tailandia","Taiwán","Tanzania","Togo","Túnez","Turquía","Ucrania",
+"Uganda","Uruguay","Uzbekistán","Venezuela","Vietnam","Yemen","Zambia","Zimbabue"
+];
+
+["pais1","pais2","pais3","pais4"].forEach(id=>{
+    const select=document.getElementById(id);
+
+    paises.forEach(pais=>{
+        select.innerHTML += `<option>${pais}</option>`;
+    });
+});
+
+function mostrarPais(numero){
+
+    const div=document.getElementById(`pais${numero}Div`);
+
+    if(div){
+        div.style.display="block";
+    }
+
+    actualizar();
+
+}
+
+function actualizar(){
+
+    const sexo=document.getElementById("sexo").value;
+    const edad=document.getElementById("edad").value;
+    const alojamiento=document.getElementById("alojamiento").value;
+    const salida=document.getElementById("salida").value;
+    const regreso=document.getElementById("regreso").value;
+    const estancia=document.getElementById("estancia").value;
+    const motivo=document.getElementById("motivo").value;
+    const organizado=document.getElementById("organizado").value;
+    const rvn=document.getElementById("rvn").value;
+    const malaria=document.getElementById("malaria").value;
+
+    const paisesSeleccionados=[
+        document.getElementById("pais1").value,
+        document.getElementById("pais2").value,
+        document.getElementById("pais3").value,
+        document.getElementById("pais4").value
+    ].filter(Boolean).join(", ");
+
+    let dias="";
+
+    if(salida && regreso){
+
+        dias=Math.ceil(
+            (new Date(regreso)-new Date(salida))
+            /(1000*60*60*24)
+        );
+
+    }
+
+    const vacunas=[];
+
+    document.querySelectorAll('.vacunas input:checked')
+        .forEach(vacuna=>vacunas.push(vacuna.value));
+
+    document.getElementById("resultado").innerHTML=`
+
+<strong>RVN:</strong> ${rvn}
+<br><br>
+
+Paciente ${sexo}, de ${edad} años, que consulta por viaje que va a realizar a ${paisesSeleccionados}.
+<br>
+
+Estancia en: ${alojamiento}.
+<br>
+
+Salida el ${salida}.
+<br>
+
+Regreso el ${regreso}.
+<br>
+
+Duración del viaje: ${dias} días.
+<br>
+
+Viaje ${organizado === "Sí" ? "organizado" : "no organizado"} con estancia en ${estancia}.
+<br>
+
+Motivo del viaje: ${motivo}.
+<br><br>
+
+Se valora riesgo de enfermedades transmitidas por picadura de mosquito y damos recomendaciones para evitarlas.
+<br><br>
+
+Administramos el día de hoy:
+<br>
+
+${vacunas.length ? vacunas.join(", ") : "Ninguna vacuna seleccionada"}
+<br><br>
+
+<strong>Profilaxis frente a la malaria:</strong> ${malaria}.
+<br><br>
+
+Consejos y recomendaciones generales: Elegir ropa y calzado adecuados. Los vestidos deberán ser de fibras naturales (algodón, lino, etc.), ligeros, no ajustados y de colores claros, siendo aconsejable cambiarse de ropa a menudo. El calzado será amplio y ventilado para evitar infecciones por hongos. La exposición a los rayos del sol puede provocar graves y debilitantes insolaciones y quemaduras, usar sombrero, gafas de sol y aplicarse cremas con filtro solar. Evitar el contacto con cualquier tipo de animales, incluidos los domésticos, ya que éstos pueden no estar controlados sanitariamente. Se entrega hoja de recomendaciones generales y damos consejos para evitar picaduras de mosquitos.
+
+`;
+
+}
+
+document.addEventListener("input", actualizar);
+document.addEventListener("change", actualizar);
+
+actualizar();
+
+</script>
+
+</body>
+</html>
