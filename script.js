@@ -22,38 +22,7 @@ const pages = {
             </div>
         </div>
     `,
-    perfil: `
-        <h2>Mi Perfil</h2>
-        <div class="profile-container">
-            <div class="profile-header">
-                <div class="profile-avatar">👤</div>
-                <div class="profile-info">
-                    <h3>Usuario Ejemplo</h3>
-                    <p>usuario@email.com</p>
-                </div>
-            </div>
-            <div class="profile-details">
-                <h3>Información Personal</h3>
-                <div class="detail-item">
-                    <label>Nombre:</label>
-                    <span>Usuario Ejemplo</span>
-                </div>
-                <div class="detail-item">
-                    <label>Email:</label>
-                    <span>usuario@email.com</span>
-                </div>
-                <div class="detail-item">
-                    <label>Teléfono:</label>
-                    <span>+34 123 456 789</span>
-                </div>
-                <div class="detail-item">
-                    <label>Ubicación:</label>
-                    <span>España</span>
-                </div>
-            </div>
-            <button class="btn-edit">Editar Perfil</button>
-        </div>
-    `,
+    viajeros: null, // Será cargado desde viajeros.html
     configuracion: `
         <h2>Configuración</h2>
         <div class="settings-container">
@@ -139,7 +108,11 @@ navButtons.forEach(btn => {
 // Función para cargar contenido
 function loadContent(contentId) {
     const content = pages[contentId];
-    if (content) {
+    
+    // Si el contenido es null, intenta cargar desde un archivo HTML externo
+    if (content === null) {
+        loadExternalContent(contentId);
+    } else if (content) {
         // Efecto de fade out
         contentArea.style.animation = 'none';
         setTimeout(() => {
@@ -151,6 +124,33 @@ function loadContent(contentId) {
             setupDynamicElements();
         }, 50);
     }
+}
+
+// Función para cargar contenido desde un archivo HTML externo
+function loadExternalContent(filename) {
+    fetch(`${filename}.html`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`No se pudo cargar ${filename}.html`);
+            }
+            return response.text();
+        })
+        .then(html => {
+            // Efecto de fade out
+            contentArea.style.animation = 'none';
+            setTimeout(() => {
+                contentArea.innerHTML = html;
+                // Efecto de fade in
+                contentArea.style.animation = 'fadeIn 0.3s ease-in';
+                
+                // Agregar event listeners a elementos dinámicos
+                setupDynamicElements();
+            }, 50);
+        })
+        .catch(error => {
+            contentArea.innerHTML = `<h2>Error</h2><p>No se pudo cargar el contenido: ${error.message}</p>`;
+            console.error('Error al cargar contenido externo:', error);
+        });
 }
 
 // Configurar event listeners para elementos dinámicos
