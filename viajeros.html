@@ -1,196 +1,195 @@
 <h2>Generador de Informe del Viajero</h2>
 
-<div class="viajeros-container">
-
-    <div class="viajeros-panel">
-
+<div class="viajeros-wrapper">
+    <div class="viajeros-datos">
         <h3>📋 Datos del paciente</h3>
-
-        <!-- FILA 1 -->
+        
+        <!-- FILA 1: Sexo y Edad -->
         <div class="form-row">
-
             <div class="form-group">
                 <label>Sexo</label>
-                <select id="sexo" class="viajeros-input">
-                    <option>Hombre</option>
-                    <option>Mujer</option>
+                <select id="sexo" class="input-field">
+                    <option value="">Seleccione...</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label>Edad</label>
-                <input type="number" id="edad" class="viajeros-input">
+                <input type="number" id="edad" class="input-field" placeholder="Ej: 30">
             </div>
-
         </div>
 
-        <!-- FILA 2 -->
+        <!-- FILA 2: Fechas -->
         <div class="form-row">
-
             <div class="form-group">
                 <label>Fecha de salida</label>
-                <input type="date" id="salida" class="viajeros-input">
+                <input type="date" id="salida" class="input-field">
             </div>
-
             <div class="form-group">
                 <label>Fecha de regreso</label>
-                <input type="date" id="regreso" class="viajeros-input">
+                <input type="date" id="regreso" class="input-field">
             </div>
-
         </div>
 
-        <!-- FILA 3 -->
+        <!-- FILA 3: Alojamiento y Motivo -->
         <div class="form-row">
-
             <div class="form-group">
                 <label>Alojamiento</label>
-                <select id="alojamiento" class="viajeros-input">
-                    <option>Hotel</option>
-                    <option>Casa familiar</option>
-                    <option>Camping</option>
-                    <option>Campus</option>
-                    <option>ONG</option>
+                <select id="alojamiento" class="input-field">
+                    <option value="">Seleccione...</option>
+                    <option value="Hotel">Hotel</option>
+                    <option value="Casa familiar">Casa familiar</option>
+                    <option value="Casa de amigos">Casa de amigos</option>
+                    <option value="Camping">Camping</option>
+                    <option value="ONG">ONG</option>
+                    <option value="Campus">Campus</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label>Motivo del viaje</label>
-                <select id="motivo" class="viajeros-input">
-                    <option>Turismo</option>
-                    <option>Visita familiar</option>
-                    <option>Trabajo</option>
-                    <option>Estudio</option>
+                <select id="motivo" class="input-field">
+                    <option value="">Seleccione...</option>
+                    <option value="Turismo">Turismo</option>
+                    <option value="Estudios">Estudios</option>
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Visita familiar">Visita familiar</option>
                 </select>
             </div>
-
         </div>
 
-        <!-- FILA 4 -->
+        <!-- FILA 4: Viaje organizado y Malaria -->
         <div class="form-row">
-
             <div class="form-group">
                 <label>Viaje organizado</label>
-                <select id="organizado" class="viajeros-input">
-                    <option>Sí</option>
-                    <option>No</option>
+                <select id="organizado" class="input-field">
+                    <option value="">Seleccione...</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label>Profilaxis malaria</label>
-                <select id="malaria" class="viajeros-input">
-                    <option>Recomendada</option>
-                    <option>No recomendada</option>
+                <select id="malaria" class="input-field">
+                    <option value="">Seleccione...</option>
+                    <option value="Recomendada">Recomendada</option>
+                    <option value="No recomendada">No recomendada</option>
                 </select>
             </div>
-
         </div>
 
-        <!-- FILA 5 -->
+        <!-- FILA 5: RVN y Zonas de estancia -->
         <div class="form-row">
-
             <div class="form-group">
                 <label>RVN</label>
-                <input type="text" id="rvn" class="viajeros-input" placeholder="Ej: A123456">
+                <input type="text" id="rvn" class="input-field" placeholder="Ej: A123456">
             </div>
-
             <div class="form-group">
                 <label>Zonas de estancia</label>
-                <input type="text" id="estancia" class="viajeros-input" placeholder="Ej: Zona urbana">
+                <input type="text" id="estancia" class="input-field" placeholder="Ej: Zona urbana">
             </div>
-
         </div>
 
-        <!-- FILA 6 -->
+        <!-- FILA 6: Países -->
         <div class="form-row">
-
             <div class="form-group">
                 <label>País 1</label>
-                <select id="pais1" class="viajeros-input" onchange="mostrarPais(2)">
-                    <option value="">Seleccione país</option>
+                <select id="pais1" class="input-field">
+                    <option value="">Seleccione país...</option>
                 </select>
             </div>
-
-            <div class="form-group" id="pais2Div" style="display:none;">
+            <div class="form-group" id="pais2-container" style="display: none;">
                 <label>País 2</label>
-                <select id="pais2" class="viajeros-input" onchange="mostrarPais(3)">
-                    <option value="">Seleccione país</option>
+                <select id="pais2" class="input-field">
+                    <option value="">Seleccione país...</option>
                 </select>
             </div>
-
         </div>
 
-        <!-- FILA 7 -->
-        <div class="form-row">
-
-            <div class="form-group" id="pais3Div" style="display:none;">
-                <label>País 3</label>
-                <select id="pais3" class="viajeros-input" onchange="mostrarPais(4)">
-                    <option value="">Seleccione país</option>
-                </select>
+        <!-- FILA 7: Vacunas recomendadas -->
+        <div class="form-group full-width">
+            <label>🩹 Vacunas recomendadas</label>
+            <div class="vacunas-container">
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Cólera">
+                    <span>Cólera</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Dengue">
+                    <span>Dengue</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Encefalitis Centroeuropea">
+                    <span>Encefalitis Centroeuropea</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Encefalitis Japonesa">
+                    <span>Encefalitis Japonesa</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Fiebre amarilla">
+                    <span>Fiebre amarilla</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Fiebre tifoidea oral">
+                    <span>Fiebre tifoidea oral</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Fiebre tifoidea inyectable">
+                    <span>Fiebre tifoidea inyectable</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Men ACWY">
+                    <span>Men ACWY</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="MPox">
+                    <span>MPox</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Polio">
+                    <span>Polio</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Rabia">
+                    <span>Rabia</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="Tétanos">
+                    <span>Tétanos</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="TV">
+                    <span>TV</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="VHA">
+                    <span>VHA</span>
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" value="VHB">
+                    <span>VHB</span>
+                </label>
             </div>
-
-            <div class="form-group" id="pais4Div" style="display:none;">
-                <label>País 4</label>
-                <select id="pais4" class="viajeros-input">
-                    <option value="">Seleccione país</option>
-                </select>
-            </div>
-
         </div>
-
-        <!-- FILA 8 -->
-        <div class="form-row">
-
-            <div class="form-group full-width">
-
-                <label>🩹 Vacunas recomendadas</label>
-
-                <div class="vacunas">
-
-                    <label class="vacuna-item"><input type="checkbox" value="Cólera"> Cólera</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Dengue"> Dengue</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Encefalitis Centroeuropea"> Encefalitis Centroeuropea</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Encefalitis Japonesa"> Encefalitis Japonesa</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Fiebre amarilla"> Fiebre amarilla</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Fiebre tifoidea inyectable"> Fiebre tifoidea inyectable</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Fiebre tifoidea oral"> Fiebre tifoidea oral</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Men ACWY"> Men ACWY</label>
-                    <label class="vacuna-item"><input type="checkbox" value="MPox"> MPox</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Polio"> Polio</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Rabia"> Rabia</label>
-                    <label class="vacuna-item"><input type="checkbox" value="Tétanos"> Tétanos</label>
-                    <label class="vacuna-item"><input type="checkbox" value="TV"> TV</label>
-                    <label class="vacuna-item"><input type="checkbox" value="VHA"> VHA</label>
-                    <label class="vacuna-item"><input type="checkbox" value="VHB"> VHB</label>
-
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
-    <div class="viajeros-panel resultado-panel">
-
+    <!-- Aquí irá el texto generado -->
+    <div class="viajeros-resultado">
         <h3>📄 Informe generado</h3>
-
-        <div id="resultado" class="preview"></div>
-
+        <div id="resultado" class="resultado-box"></div>
     </div>
-
 </div>
 
 <style>
-.viajeros-container {
+.viajeros-wrapper {
     display: flex;
     flex-direction: column;
     gap: 25px;
     margin-top: 20px;
 }
 
-.viajeros-panel {
+.viajeros-datos {
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f7ff 100%);
     border-radius: 12px;
     padding: 25px;
@@ -198,7 +197,7 @@
     border: 2px solid #b2ebf2;
 }
 
-.viajeros-panel h3 {
+.viajeros-datos h3 {
     color: #00838f;
     margin-top: 0;
     margin-bottom: 20px;
@@ -226,7 +225,7 @@
     font-size: 14px;
 }
 
-.viajeros-input {
+.input-field {
     padding: 12px;
     border: 2px solid #b2ebf2;
     border-radius: 8px;
@@ -237,14 +236,14 @@
     font-family: inherit;
 }
 
-.viajeros-input:focus {
+.input-field:focus {
     outline: none;
     border-color: #26c6da;
     box-shadow: 0 0 8px rgba(38, 198, 218, 0.3);
     background-color: #f0fafb;
 }
 
-.viajeros-input:hover {
+.input-field:hover {
     border-color: #00acc1;
 }
 
@@ -252,165 +251,142 @@
     grid-column: 1 / -1;
 }
 
-.vacunas {
+.vacunas-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 10px;
+    gap: 12px;
     border: 2px solid #b2ebf2;
     border-radius: 8px;
     padding: 15px;
-    max-height: 280px;
-    overflow-y: auto;
     background: white;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-.vacuna-item {
+.checkbox-item {
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
     color: #333;
     transition: all 0.2s ease;
     border-radius: 6px;
+    user-select: none;
 }
 
-.vacuna-item:hover {
+.checkbox-item:hover {
     background: #e0f7fa;
     color: #00695c;
 }
 
-.vacuna-item input[type="checkbox"] {
+.checkbox-item input[type="checkbox"] {
     margin-right: 8px;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     cursor: pointer;
     accent-color: #26c6da;
 }
 
-.resultado-panel {
-    width: 100%;
+.checkbox-item span {
+    flex: 1;
 }
 
-.preview {
-    border: 2px solid #26c6da;
-    border-radius: 10px;
-    padding: 20px;
-    line-height: 1.8;
+.viajeros-resultado {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f7ff 100%);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(38, 198, 218, 0.1);
+    border: 2px solid #b2ebf2;
+}
+
+.viajeros-resultado h3 {
+    color: #00838f;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border-bottom: 3px solid #26c6da;
+    padding-bottom: 10px;
+}
+
+.resultado-box {
     background: white;
+    border: 2px solid #26c6da;
+    border-radius: 8px;
+    padding: 20px;
     min-height: 200px;
     color: #333;
     font-size: 14px;
+    line-height: 1.8;
 }
 
-.preview strong {
-    color: #00838f;
-    font-weight: 700;
-}
-
-@media(max-width: 768px) {
+@media (max-width: 768px) {
     .form-row {
         grid-template-columns: 1fr;
     }
 
-    .vacunas {
+    .vacunas-container {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
 </style>
 
 <script>
+// Lista de países
 const paises = [
-"Afganistán","Albania","Alemania","Andorra","Angola","Arabia Saudí",
-"Argelia","Argentina","Armenia","Australia","Austria","Azerbaiyán",
-"Bahamas","Bangladés","Barbados","Bélgica","Belice","Benín","Bolivia",
-"Bosnia y Herzegovina","Botsuana","Brasil","Brunéi","Bulgaria",
-"Burkina Faso","Burundi","Camboya","Camerún","Canadá","Catar","Chad",
-"Chile","China","Chipre","Colombia","Corea del Norte","Corea del Sur",
-"Costa Rica","Costa de Marfil","Croacia","Cuba","Dinamarca","Ecuador",
-"Egipto","El Salvador","Emiratos Árabes Unidos","Eritrea","Eslovaquia",
-"Eslovenia","España","Estados Unidos","Estonia","Etiopía","Filipinas",
-"Finlandia","Francia","Gabón","Gambia","Georgia","Ghana","Grecia",
-"Guatemala","Guinea","Guinea Ecuatorial","Guyana","Haití","Honduras",
-"Hungría","India","Indonesia","Irak","Irán","Irlanda","Islandia",
-"Israel","Italia","Jamaica","Japón","Jordania","Kenia","Kuwait","Laos",
-"Letonia","Líbano","Liberia","Libia","Lituania","Luxemburgo",
-"Madagascar","Malasia","Malaui","Maldivas","Malí","Malta","Marruecos",
-"Mauricio","Mauritania","México","Moldavia","Mongolia","Mozambique",
-"Myanmar","Namibia","Nepal","Nicaragua","Níger","Nigeria","Noruega",
-"Nueva Zelanda","Omán","Países Bajos","Pakistán","Panamá","Papúa Nueva Guinea",
-"Paraguay","Perú","Polonia","Portugal","Reino Unido","República Checa",
-"República Dominicana","Rumanía","Rusia","Senegal","Serbia","Singapur",
-"Siria","Somalia","Sri Lanka","Sudáfrica","Sudán","Suecia","Suiza",
-"Tailandia","Taiwán","Tanzania","Togo","Túnez","Turquía","Ucrania",
-"Uganda","Uruguay","Uzbekistán","Venezuela","Vietnam","Yemen","Zambia","Zimbabue"
+    "Afganistán","Albania","Alemania","Andorra","Angola","Arabia Saudí",
+    "Argelia","Argentina","Armenia","Australia","Austria","Azerbaiyán",
+    "Bahamas","Bangladés","Barbados","Bélgica","Belice","Benín","Bolivia",
+    "Bosnia y Herzegovina","Botsuana","Brasil","Brunéi","Bulgaria",
+    "Burkina Faso","Burundi","Camboya","Camerún","Canadá","Catar","Chad",
+    "Chile","China","Chipre","Colombia","Corea del Norte","Corea del Sur",
+    "Costa Rica","Costa de Marfil","Croacia","Cuba","Dinamarca","Ecuador",
+    "Egipto","El Salvador","Emiratos Árabes Unidos","Eritrea","Eslovaquia",
+    "Eslovenia","España","Estados Unidos","Estonia","Etiopía","Filipinas",
+    "Finlandia","Francia","Gabón","Gambia","Georgia","Ghana","Grecia",
+    "Guatemala","Guinea","Guinea Ecuatorial","Guyana","Haití","Honduras",
+    "Hungría","India","Indonesia","Irak","Irán","Irlanda","Islandia",
+    "Israel","Italia","Jamaica","Japón","Jordania","Kenia","Kuwait","Laos",
+    "Letonia","Líbano","Liberia","Libia","Lituania","Luxemburgo",
+    "Madagascar","Malasia","Malaui","Maldivas","Malí","Malta","Marruecos",
+    "Mauricio","Mauritania","México","Moldavia","Mongolia","Mozambique",
+    "Myanmar","Namibia","Nepal","Nicaragua","Níger","Nigeria","Noruega",
+    "Nueva Zelanda","Omán","Países Bajos","Pakistán","Panamá","Papúa Nueva Guinea",
+    "Paraguay","Perú","Polonia","Portugal","Reino Unido","República Checa",
+    "República Dominicana","Rumanía","Rusia","Senegal","Serbia","Singapur",
+    "Siria","Somalia","Sri Lanka","Sudáfrica","Sudán","Suecia","Suiza",
+    "Tailandia","Taiwán","Tanzania","Togo","Túnez","Turquía","Ucrania",
+    "Uganda","Uruguay","Uzbekistán","Venezuela","Vietnam","Yemen","Zambia","Zimbabue"
 ];
 
-["pais1","pais2","pais3","pais4"].forEach(id=>{
-    const select=document.getElementById(id);
-    if(select) {
-        paises.forEach(pais=>{
-            select.innerHTML += `<option>${pais}</option>`;
-        });
+// Cargar países en los select
+function cargarPaises() {
+    const pais1 = document.getElementById("pais1");
+    const pais2 = document.getElementById("pais2");
+    
+    paises.forEach(pais => {
+        const option1 = document.createElement("option");
+        option1.value = pais;
+        option1.textContent = pais;
+        pais1.appendChild(option1);
+        
+        const option2 = document.createElement("option");
+        option2.value = pais;
+        option2.textContent = pais;
+        pais2.appendChild(option2);
+    });
+}
+
+// Mostrar/ocultar País 2
+document.getElementById("pais1").addEventListener("change", function() {
+    const pais2Container = document.getElementById("pais2-container");
+    if (this.value) {
+        pais2Container.style.display = "block";
+    } else {
+        pais2Container.style.display = "none";
+        document.getElementById("pais2").value = "";
     }
 });
 
-function mostrarPais(numero){
-    const div=document.getElementById(`pais${numero}Div`);
-    if(div){
-        div.style.display="block";
-    }
-    actualizar();
-}
-
-function actualizar(){
-    const sexo=document.getElementById("sexo")?.value || "";
-    const edad=document.getElementById("edad")?.value || "";
-    const alojamiento=document.getElementById("alojamiento")?.value || "";
-    const salida=document.getElementById("salida")?.value || "";
-    const regreso=document.getElementById("regreso")?.value || "";
-    const estancia=document.getElementById("estancia")?.value || "";
-    const motivo=document.getElementById("motivo")?.value || "";
-    const organizado=document.getElementById("organizado")?.value || "";
-    const rvn=document.getElementById("rvn")?.value || "";
-    const malaria=document.getElementById("malaria")?.value || "";
-
-    const paisesSeleccionados=[
-        document.getElementById("pais1")?.value || "",
-        document.getElementById("pais2")?.value || "",
-        document.getElementById("pais3")?.value || "",
-        document.getElementById("pais4")?.value || ""
-    ].filter(Boolean).join(", ");
-
-    let dias="";
-
-    if(salida && regreso){
-        dias=Math.ceil(
-            (new Date(regreso)-new Date(salida))
-            /(1000*60*60*24)
-        );
-    }
-
-    const vacunas=[];
-
-    // Buscar en el contenedor actual
-    const contentArea = document.getElementById("content-area");
-    const container = contentArea || document;
-    
-    container.querySelectorAll('.vacunas input:checked').forEach(vacuna=>{
-        vacunas.push(vacuna.value);
-    });
-
-    const resultadoDiv = document.getElementById("resultado");
-    if(resultadoDiv) {
-        resultadoDiv.innerHTML=``;
-    }
-}
-
-// Agregar event listeners
-document.addEventListener("input", actualizar);
-document.addEventListener("change", actualizar);
-
-// Ejecutar actualizar después de un pequeño delay
-setTimeout(actualizar, 100);
-
+// Cargar países al iniciar
+cargarPaises();
 </script>
