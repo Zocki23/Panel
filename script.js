@@ -1,4 +1,31 @@
 // Objeto con el contenido de cada página
+const paises = [
+    "Afganistán","Albania","Alemania","Andorra","Angola","Arabia Saudí",
+    "Argelia","Argentina","Armenia","Australia","Austria","Azerbaiyán",
+    "Bahamas","Bangladés","Barbados","Bélgica","Belice","Benín","Bolivia",
+    "Bosnia y Herzegovina","Botsuana","Brasil","Brunéi","Bulgaria",
+    "Burkina Faso","Burundi","Camboya","Camerún","Canadá","Catar","Chad",
+    "Chile","China","Chipre","Colombia","Corea del Norte","Corea del Sur",
+    "Costa Rica","Costa de Marfil","Croacia","Cuba","Dinamarca","Ecuador",
+    "Egipto","El Salvador","Emiratos Árabes Unidos","Eritrea","Eslovaquia",
+    "Eslovenia","España","Estados Unidos","Estonia","Etiopía","Filipinas",
+    "Finlandia","Francia","Gabón","Gambia","Georgia","Ghana","Grecia",
+    "Guatemala","Guinea","Guinea Ecuatorial","Guyana","Haití","Honduras",
+    "Hungría","India","Indonesia","Irak","Irán","Irlanda","Islandia",
+    "Israel","Italia","Jamaica","Japón","Jordania","Kenia","Kuwait","Laos",
+    "Letonia","Líbano","Liberia","Libia","Lituania","Luxemburgo",
+    "Madagascar","Malasia","Malaui","Maldivas","Malí","Malta","Marruecos",
+    "Mauricio","Mauritania","México","Moldavia","Mongolia","Mozambique",
+    "Myanmar","Namibia","Nepal","Nicaragua","Níger","Nigeria","Noruega",
+    "Nueva Zelanda","Omán","Países Bajos","Pakistán","Panamá","Papúa Nueva Guinea",
+    "Paraguay","Perú","Polonia","Portugal","Reino Unido","República Checa",
+    "República Dominicana","Rumanía","Rusia","Senegal","Serbia","Singapur",
+    "Siria","Somalia","Sri Lanka","Sudáfrica","Sudán","Suecia","Suiza",
+    "Tailandia","Taiwán","Tanzania","Togo","Túnez","Turquía","Ucrania",
+    "Uganda","Uruguay","Uzbekistán","Venezuela","Vietnam","Yemen","Zambia","Zimbabue"
+];
+
+
 const pages = {
     inicio: `
         <h2>Bienvenido al Panel</h2>
