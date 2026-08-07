@@ -240,5 +240,5 @@ function irAProtocoloA() {
 }
 
 function irAprotocoloP() {
-    window.location.href = "https://ejemplo3.com";
+    window.location.href = "https://www.euskadi.eus/informacion/publicaciones/web01-s2ing/es/adjuntos/ProtocoloMedidasAislamiento.pdf";
 }
