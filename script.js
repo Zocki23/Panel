@@ -231,18 +231,14 @@ function setupDynamicElements() {
 }
 
 //SCRIPTS DE AISLAMIENTOS
-function irAFacilDeUsar() {
-    window.location.href = "https://ejemplo1.com";
+function irACDC() {
+    window.location.href = "https://www.cdc.gov/infection-control/hcp/isolation-precautions/appendix-a-type-duration.html";
 }
 
-function irADisenoModerno() {
-    window.location.href = "https://ejemplo2.com";
+function irAProtocoloA() {
+    window.location.href = "https://www.sociedadandaluzapreventiva.com/wp-content/uploads/Guia-de-aislamientos-para-la-prevencion-de-las-enfermedades-transmisibles-en-el-hospital.pdf";
 }
 
-function irARapido() {
+function irAprotocoloP() {
     window.location.href = "https://ejemplo3.com";
-}
-
-function irAPersonalizable() {
-    window.location.href = "https://ejemplo4.com";
 }
