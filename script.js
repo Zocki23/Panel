@@ -136,7 +136,7 @@ function loadContent(contentId) {
     const content = pages[contentId];
 
     // Si es aislamientos, cargarlo desde archivo externo
-    if (contentId === 'aislamientos') {
+    if (contentId == 'aislamientos') {
         loadExternalContent('aislamientos');
         return;
     }
