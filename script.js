@@ -229,3 +229,20 @@ function setupDynamicElements() {
         });
     }
 }
+
+//SCRIPTS DE AISLAMIENTOS
+function irAFacilDeUsar() {
+    window.location.href = "https://ejemplo1.com";
+}
+
+function irADisenoModerno() {
+    window.location.href = "https://ejemplo2.com";
+}
+
+function irARapido() {
+    window.location.href = "https://ejemplo3.com";
+}
+
+function irAPersonalizable() {
+    window.location.href = "https://ejemplo4.com";
+}
