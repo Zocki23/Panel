@@ -134,16 +134,16 @@ navButtons.forEach(btn => {
 // Función para cargar contenido
 function loadContent(contentId) {
     const content = pages[contentId];
+
+    // Si es aislamientos, cargarlo desde archivo externo
+    if (contentId === 'aislamientos') {
+        loadExternalContent('aislamientos');
+        return;
+    }
     
     // Si es viajeros, cargarlo desde archivo externo
     if (contentId === 'viajeros') {
         loadExternalContent('viajeros');
-        return;
-    }
-
-    // Si es viajeros, cargarlo desde archivo externo
-    if (contentId === 'aislamientos') {
-        loadExternalContent('aislamientos');
         return;
     }
     
