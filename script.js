@@ -140,6 +140,12 @@ function loadContent(contentId) {
         loadExternalContent('viajeros');
         return;
     }
+
+    // Si es viajeros, cargarlo desde archivo externo
+    if (contentId === 'aislamientos') {
+        loadExternalContent('aislamientos');
+        return;
+    }
     
     if (content) {
         // Efecto de fade out
